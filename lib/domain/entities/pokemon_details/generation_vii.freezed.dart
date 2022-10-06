@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+GenerationVii _$GenerationViiFromJson(Map<String, dynamic> json) {
+  return _GenerationVii.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GenerationVii {
   DreamWorld get icons => throw _privateConstructorUsedError;
   Home get ultraSunUltraMoon => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenerationViiCopyWith<GenerationVii> get copyWith =>
       throw _privateConstructorUsedError;
@@ -121,9 +126,12 @@ class __$$_GenerationViiCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_GenerationVii implements _GenerationVii {
   _$_GenerationVii({required this.icons, required this.ultraSunUltraMoon});
+
+  factory _$_GenerationVii.fromJson(Map<String, dynamic> json) =>
+      _$$_GenerationViiFromJson(json);
 
   @override
   final DreamWorld icons;
@@ -145,6 +153,7 @@ class _$_GenerationVii implements _GenerationVii {
                 .equals(other.ultraSunUltraMoon, ultraSunUltraMoon));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -155,12 +164,22 @@ class _$_GenerationVii implements _GenerationVii {
   @override
   _$$_GenerationViiCopyWith<_$_GenerationVii> get copyWith =>
       __$$_GenerationViiCopyWithImpl<_$_GenerationVii>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GenerationViiToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GenerationVii implements GenerationVii {
   factory _GenerationVii(
       {required final DreamWorld icons,
       required final Home ultraSunUltraMoon}) = _$_GenerationVii;
+
+  factory _GenerationVii.fromJson(Map<String, dynamic> json) =
+      _$_GenerationVii.fromJson;
 
   @override
   DreamWorld get icons;

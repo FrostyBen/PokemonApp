@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Species _$SpeciesFromJson(Map<String, dynamic> json) {
+  return _Species.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Species {
   String get name => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SpeciesCopyWith<Species> get copyWith => throw _privateConstructorUsedError;
 }
@@ -93,9 +98,12 @@ class __$$_SpeciesCopyWithImpl<$Res> extends _$SpeciesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Species implements _Species {
   _$_Species({required this.name, required this.url});
+
+  factory _$_Species.fromJson(Map<String, dynamic> json) =>
+      _$$_SpeciesFromJson(json);
 
   @override
   final String name;
@@ -116,6 +124,7 @@ class _$_Species implements _Species {
             const DeepCollectionEquality().equals(other.url, url));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -126,11 +135,20 @@ class _$_Species implements _Species {
   @override
   _$$_SpeciesCopyWith<_$_Species> get copyWith =>
       __$$_SpeciesCopyWithImpl<_$_Species>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SpeciesToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Species implements Species {
   factory _Species({required final String name, required final String url}) =
       _$_Species;
+
+  factory _Species.fromJson(Map<String, dynamic> json) = _$_Species.fromJson;
 
   @override
   String get name;

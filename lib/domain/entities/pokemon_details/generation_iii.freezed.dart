@@ -14,12 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+GenerationIii _$GenerationIiiFromJson(Map<String, dynamic> json) {
+  return _GenerationIii.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GenerationIii {
   Emerald get emerald => throw _privateConstructorUsedError;
   Gold get fireredLeafgreen => throw _privateConstructorUsedError;
   Gold get rubySapphire => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenerationIiiCopyWith<GenerationIii> get copyWith =>
       throw _privateConstructorUsedError;
@@ -142,12 +147,15 @@ class __$$_GenerationIiiCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_GenerationIii implements _GenerationIii {
   _$_GenerationIii(
       {required this.emerald,
       required this.fireredLeafgreen,
       required this.rubySapphire});
+
+  factory _$_GenerationIii.fromJson(Map<String, dynamic> json) =>
+      _$$_GenerationIiiFromJson(json);
 
   @override
   final Emerald emerald;
@@ -173,6 +181,7 @@ class _$_GenerationIii implements _GenerationIii {
                 .equals(other.rubySapphire, rubySapphire));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -184,6 +193,13 @@ class _$_GenerationIii implements _GenerationIii {
   @override
   _$$_GenerationIiiCopyWith<_$_GenerationIii> get copyWith =>
       __$$_GenerationIiiCopyWithImpl<_$_GenerationIii>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GenerationIiiToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GenerationIii implements GenerationIii {
@@ -191,6 +207,9 @@ abstract class _GenerationIii implements GenerationIii {
       {required final Emerald emerald,
       required final Gold fireredLeafgreen,
       required final Gold rubySapphire}) = _$_GenerationIii;
+
+  factory _GenerationIii.fromJson(Map<String, dynamic> json) =
+      _$_GenerationIii.fromJson;
 
   @override
   Emerald get emerald;

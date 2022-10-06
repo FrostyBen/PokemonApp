@@ -14,12 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+VersionGroupDetail _$VersionGroupDetailFromJson(Map<String, dynamic> json) {
+  return _VersionGroupDetail.fromJson(json);
+}
+
 /// @nodoc
 mixin _$VersionGroupDetail {
   int get levelLearnedAt => throw _privateConstructorUsedError;
   Species get moveLearnMethod => throw _privateConstructorUsedError;
   Species get versionGroup => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $VersionGroupDetailCopyWith<VersionGroupDetail> get copyWith =>
       throw _privateConstructorUsedError;
@@ -134,12 +139,15 @@ class __$$_VersionGroupDetailCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_VersionGroupDetail implements _VersionGroupDetail {
   _$_VersionGroupDetail(
       {required this.levelLearnedAt,
       required this.moveLearnMethod,
       required this.versionGroup});
+
+  factory _$_VersionGroupDetail.fromJson(Map<String, dynamic> json) =>
+      _$$_VersionGroupDetailFromJson(json);
 
   @override
   final int levelLearnedAt;
@@ -166,6 +174,7 @@ class _$_VersionGroupDetail implements _VersionGroupDetail {
                 .equals(other.versionGroup, versionGroup));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -178,6 +187,13 @@ class _$_VersionGroupDetail implements _VersionGroupDetail {
   _$$_VersionGroupDetailCopyWith<_$_VersionGroupDetail> get copyWith =>
       __$$_VersionGroupDetailCopyWithImpl<_$_VersionGroupDetail>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_VersionGroupDetailToJson(
+      this,
+    );
+  }
 }
 
 abstract class _VersionGroupDetail implements VersionGroupDetail {
@@ -185,6 +201,9 @@ abstract class _VersionGroupDetail implements VersionGroupDetail {
       {required final int levelLearnedAt,
       required final Species moveLearnMethod,
       required final Species versionGroup}) = _$_VersionGroupDetail;
+
+  factory _VersionGroupDetail.fromJson(Map<String, dynamic> json) =
+      _$_VersionGroupDetail.fromJson;
 
   @override
   int get levelLearnedAt;

@@ -2,11 +2,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'result.freezed.dart';
 part 'result.g.dart';
 @freezed
-class Result with _$Result {
-  factory Result({
+class Pokemon with _$Pokemon {
+  factory Pokemon({
     required String name,
     required String url,
-  }) = _Result;
+  }) = _Pokemon;
 
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
+  factory Pokemon.fromJson(Map<String, dynamic> json) => _$PokemonFromJson(json);
 }

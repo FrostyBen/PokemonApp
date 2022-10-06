@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+GenerationVi _$GenerationViFromJson(Map<String, dynamic> json) {
+  return _GenerationVi.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GenerationVi {
   DreamWorld get icons => throw _privateConstructorUsedError;
   Home get ultraSunUltraMoon => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenerationViCopyWith<GenerationVi> get copyWith =>
       throw _privateConstructorUsedError;
@@ -120,9 +125,12 @@ class __$$_GenerationViCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_GenerationVi implements _GenerationVi {
   _$_GenerationVi({required this.icons, required this.ultraSunUltraMoon});
+
+  factory _$_GenerationVi.fromJson(Map<String, dynamic> json) =>
+      _$$_GenerationViFromJson(json);
 
   @override
   final DreamWorld icons;
@@ -144,6 +152,7 @@ class _$_GenerationVi implements _GenerationVi {
                 .equals(other.ultraSunUltraMoon, ultraSunUltraMoon));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -154,12 +163,22 @@ class _$_GenerationVi implements _GenerationVi {
   @override
   _$$_GenerationViCopyWith<_$_GenerationVi> get copyWith =>
       __$$_GenerationViCopyWithImpl<_$_GenerationVi>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GenerationViToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GenerationVi implements GenerationVi {
   factory _GenerationVi(
       {required final DreamWorld icons,
       required final Home ultraSunUltraMoon}) = _$_GenerationVi;
+
+  factory _GenerationVi.fromJson(Map<String, dynamic> json) =
+      _$_GenerationVi.fromJson;
 
   @override
   DreamWorld get icons;

@@ -14,10 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+GenerationViii _$GenerationViiiFromJson(Map<String, dynamic> json) {
+  return _GenerationViii.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GenerationViii {
   DreamWorld get icons => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenerationViiiCopyWith<GenerationViii> get copyWith =>
       throw _privateConstructorUsedError;
@@ -100,9 +105,12 @@ class __$$_GenerationViiiCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_GenerationViii implements _GenerationViii {
   _$_GenerationViii({required this.icons});
+
+  factory _$_GenerationViii.fromJson(Map<String, dynamic> json) =>
+      _$$_GenerationViiiFromJson(json);
 
   @override
   final DreamWorld icons;
@@ -120,6 +128,7 @@ class _$_GenerationViii implements _GenerationViii {
             const DeepCollectionEquality().equals(other.icons, icons));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(icons));
@@ -128,11 +137,21 @@ class _$_GenerationViii implements _GenerationViii {
   @override
   _$$_GenerationViiiCopyWith<_$_GenerationViii> get copyWith =>
       __$$_GenerationViiiCopyWithImpl<_$_GenerationViii>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GenerationViiiToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GenerationViii implements GenerationViii {
   factory _GenerationViii({required final DreamWorld icons}) =
       _$_GenerationViii;
+
+  factory _GenerationViii.fromJson(Map<String, dynamic> json) =
+      _$_GenerationViii.fromJson;
 
   @override
   DreamWorld get icons;

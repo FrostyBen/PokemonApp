@@ -14,10 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+GenerationV _$GenerationVFromJson(Map<String, dynamic> json) {
+  return _GenerationV.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GenerationV {
   Sprites get blackWhite => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenerationVCopyWith<GenerationV> get copyWith =>
       throw _privateConstructorUsedError;
@@ -98,9 +103,12 @@ class __$$_GenerationVCopyWithImpl<$Res> extends _$GenerationVCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_GenerationV implements _GenerationV {
   _$_GenerationV({required this.blackWhite});
+
+  factory _$_GenerationV.fromJson(Map<String, dynamic> json) =>
+      _$$_GenerationVFromJson(json);
 
   @override
   final Sprites blackWhite;
@@ -119,6 +127,7 @@ class _$_GenerationV implements _GenerationV {
                 .equals(other.blackWhite, blackWhite));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(blackWhite));
@@ -127,10 +136,20 @@ class _$_GenerationV implements _GenerationV {
   @override
   _$$_GenerationVCopyWith<_$_GenerationV> get copyWith =>
       __$$_GenerationVCopyWithImpl<_$_GenerationV>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GenerationVToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GenerationV implements GenerationV {
   factory _GenerationV({required final Sprites blackWhite}) = _$_GenerationV;
+
+  factory _GenerationV.fromJson(Map<String, dynamic> json) =
+      _$_GenerationV.fromJson;
 
   @override
   Sprites get blackWhite;

@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Crystal _$CrystalFromJson(Map<String, dynamic> json) {
+  return _Crystal.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Crystal {
   String get backDefault => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$Crystal {
   String get frontShinyTransparent => throw _privateConstructorUsedError;
   String get frontTransparent => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CrystalCopyWith<Crystal> get copyWith => throw _privateConstructorUsedError;
 }
@@ -175,7 +180,7 @@ class __$$_CrystalCopyWithImpl<$Res> extends _$CrystalCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Crystal implements _Crystal {
   _$_Crystal(
       {required this.backDefault,
@@ -186,6 +191,9 @@ class _$_Crystal implements _Crystal {
       required this.frontShiny,
       required this.frontShinyTransparent,
       required this.frontTransparent});
+
+  factory _$_Crystal.fromJson(Map<String, dynamic> json) =>
+      _$$_CrystalFromJson(json);
 
   @override
   final String backDefault;
@@ -231,6 +239,7 @@ class _$_Crystal implements _Crystal {
                 .equals(other.frontTransparent, frontTransparent));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -247,6 +256,13 @@ class _$_Crystal implements _Crystal {
   @override
   _$$_CrystalCopyWith<_$_Crystal> get copyWith =>
       __$$_CrystalCopyWithImpl<_$_Crystal>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CrystalToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Crystal implements Crystal {
@@ -259,6 +275,8 @@ abstract class _Crystal implements Crystal {
       required final String frontShiny,
       required final String frontShinyTransparent,
       required final String frontTransparent}) = _$_Crystal;
+
+  factory _Crystal.fromJson(Map<String, dynamic> json) = _$_Crystal.fromJson;
 
   @override
   String get backDefault;

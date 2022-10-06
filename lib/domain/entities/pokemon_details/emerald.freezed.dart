@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Emerald _$EmeraldFromJson(Map<String, dynamic> json) {
+  return _Emerald.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Emerald {
   String get frontDefault => throw _privateConstructorUsedError;
   String get frontShiny => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EmeraldCopyWith<Emerald> get copyWith => throw _privateConstructorUsedError;
 }
@@ -93,9 +98,12 @@ class __$$_EmeraldCopyWithImpl<$Res> extends _$EmeraldCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Emerald implements _Emerald {
   _$_Emerald({required this.frontDefault, required this.frontShiny});
+
+  factory _$_Emerald.fromJson(Map<String, dynamic> json) =>
+      _$$_EmeraldFromJson(json);
 
   @override
   final String frontDefault;
@@ -118,6 +126,7 @@ class _$_Emerald implements _Emerald {
                 .equals(other.frontShiny, frontShiny));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -128,12 +137,21 @@ class _$_Emerald implements _Emerald {
   @override
   _$$_EmeraldCopyWith<_$_Emerald> get copyWith =>
       __$$_EmeraldCopyWithImpl<_$_Emerald>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EmeraldToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Emerald implements Emerald {
   factory _Emerald(
       {required final String frontDefault,
       required final String frontShiny}) = _$_Emerald;
+
+  factory _Emerald.fromJson(Map<String, dynamic> json) = _$_Emerald.fromJson;
 
   @override
   String get frontDefault;

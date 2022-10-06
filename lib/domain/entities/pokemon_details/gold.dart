@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'gold.freezed.dart';
+part 'gold.g.dart';
 
 @freezed
 class Gold with _$Gold {
@@ -10,4 +11,5 @@ class Gold with _$Gold {
     required String frontShiny,
     required String frontTransparent,
   }) = _Gold;
+  factory Gold.fromJson(Map<String, dynamic> json) => _$GoldFromJson(json);
 }

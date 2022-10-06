@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Home _$HomeFromJson(Map<String, dynamic> json) {
+  return _Home.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Home {
   String get frontDefault => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$Home {
   String get frontShiny => throw _privateConstructorUsedError;
   dynamic get frontShinyFemale => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HomeCopyWith<Home> get copyWith => throw _privateConstructorUsedError;
 }
@@ -122,13 +127,15 @@ class __$$_HomeCopyWithImpl<$Res> extends _$HomeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Home implements _Home {
   _$_Home(
       {required this.frontDefault,
       required this.frontFemale,
       required this.frontShiny,
       required this.frontShinyFemale});
+
+  factory _$_Home.fromJson(Map<String, dynamic> json) => _$$_HomeFromJson(json);
 
   @override
   final String frontDefault;
@@ -159,6 +166,7 @@ class _$_Home implements _Home {
                 .equals(other.frontShinyFemale, frontShinyFemale));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -171,6 +179,13 @@ class _$_Home implements _Home {
   @override
   _$$_HomeCopyWith<_$_Home> get copyWith =>
       __$$_HomeCopyWithImpl<_$_Home>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_HomeToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Home implements Home {
@@ -179,6 +194,8 @@ abstract class _Home implements Home {
       required final dynamic frontFemale,
       required final String frontShiny,
       required final dynamic frontShinyFemale}) = _$_Home;
+
+  factory _Home.fromJson(Map<String, dynamic> json) = _$_Home.fromJson;
 
   @override
   String get frontDefault;

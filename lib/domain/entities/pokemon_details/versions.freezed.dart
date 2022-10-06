@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Versions _$VersionsFromJson(Map<String, dynamic> json) {
+  return _Versions.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Versions {
   GenerationI get generationI => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$Versions {
   GenerationVii get generationVii => throw _privateConstructorUsedError;
   GenerationViii get generationViii => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $VersionsCopyWith<Versions> get copyWith =>
       throw _privateConstructorUsedError;
@@ -259,7 +264,7 @@ class __$$_VersionsCopyWithImpl<$Res> extends _$VersionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Versions implements _Versions {
   _$_Versions(
       {required this.generationI,
@@ -270,6 +275,9 @@ class _$_Versions implements _Versions {
       required this.generationVi,
       required this.generationVii,
       required this.generationViii});
+
+  factory _$_Versions.fromJson(Map<String, dynamic> json) =>
+      _$$_VersionsFromJson(json);
 
   @override
   final GenerationI generationI;
@@ -316,6 +324,7 @@ class _$_Versions implements _Versions {
                 .equals(other.generationViii, generationViii));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -332,6 +341,13 @@ class _$_Versions implements _Versions {
   @override
   _$$_VersionsCopyWith<_$_Versions> get copyWith =>
       __$$_VersionsCopyWithImpl<_$_Versions>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_VersionsToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Versions implements Versions {
@@ -344,6 +360,8 @@ abstract class _Versions implements Versions {
       required final GenerationVi generationVi,
       required final GenerationVii generationVii,
       required final GenerationViii generationViii}) = _$_Versions;
+
+  factory _Versions.fromJson(Map<String, dynamic> json) = _$_Versions.fromJson;
 
   @override
   GenerationI get generationI;

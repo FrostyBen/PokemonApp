@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+DreamWorld _$DreamWorldFromJson(Map<String, dynamic> json) {
+  return _DreamWorld.fromJson(json);
+}
+
 /// @nodoc
 mixin _$DreamWorld {
   String get frontDefault => throw _privateConstructorUsedError;
   dynamic get frontFemale => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DreamWorldCopyWith<DreamWorld> get copyWith =>
       throw _privateConstructorUsedError;
@@ -97,9 +102,12 @@ class __$$_DreamWorldCopyWithImpl<$Res> extends _$DreamWorldCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_DreamWorld implements _DreamWorld {
   _$_DreamWorld({required this.frontDefault, required this.frontFemale});
+
+  factory _$_DreamWorld.fromJson(Map<String, dynamic> json) =>
+      _$$_DreamWorldFromJson(json);
 
   @override
   final String frontDefault;
@@ -122,6 +130,7 @@ class _$_DreamWorld implements _DreamWorld {
                 .equals(other.frontFemale, frontFemale));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -132,12 +141,22 @@ class _$_DreamWorld implements _DreamWorld {
   @override
   _$$_DreamWorldCopyWith<_$_DreamWorld> get copyWith =>
       __$$_DreamWorldCopyWithImpl<_$_DreamWorld>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DreamWorldToJson(
+      this,
+    );
+  }
 }
 
 abstract class _DreamWorld implements DreamWorld {
   factory _DreamWorld(
       {required final String frontDefault,
       required final dynamic frontFemale}) = _$_DreamWorld;
+
+  factory _DreamWorld.fromJson(Map<String, dynamic> json) =
+      _$_DreamWorld.fromJson;
 
   @override
   String get frontDefault;

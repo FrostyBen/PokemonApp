@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Gold _$GoldFromJson(Map<String, dynamic> json) {
+  return _Gold.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Gold {
   String get backDefault => throw _privateConstructorUsedError;
@@ -22,6 +26,7 @@ mixin _$Gold {
   String get frontShiny => throw _privateConstructorUsedError;
   String get frontTransparent => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GoldCopyWith<Gold> get copyWith => throw _privateConstructorUsedError;
 }
@@ -135,7 +140,7 @@ class __$$_GoldCopyWithImpl<$Res> extends _$GoldCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Gold implements _Gold {
   _$_Gold(
       {required this.backDefault,
@@ -143,6 +148,8 @@ class _$_Gold implements _Gold {
       required this.frontDefault,
       required this.frontShiny,
       required this.frontTransparent});
+
+  factory _$_Gold.fromJson(Map<String, dynamic> json) => _$$_GoldFromJson(json);
 
   @override
   final String backDefault;
@@ -176,6 +183,7 @@ class _$_Gold implements _Gold {
                 .equals(other.frontTransparent, frontTransparent));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -189,6 +197,13 @@ class _$_Gold implements _Gold {
   @override
   _$$_GoldCopyWith<_$_Gold> get copyWith =>
       __$$_GoldCopyWithImpl<_$_Gold>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GoldToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Gold implements Gold {
@@ -198,6 +213,8 @@ abstract class _Gold implements Gold {
       required final String frontDefault,
       required final String frontShiny,
       required final String frontTransparent}) = _$_Gold;
+
+  factory _Gold.fromJson(Map<String, dynamic> json) = _$_Gold.fromJson;
 
   @override
   String get backDefault;

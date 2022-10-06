@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'crystal.freezed.dart';
+part 'crystal.g.dart';
 
 @freezed
 class Crystal with _$Crystal {
@@ -13,4 +14,7 @@ class Crystal with _$Crystal {
     required String frontShinyTransparent,
     required String frontTransparent,
   }) = _Crystal;
+
+  factory Crystal.fromJson(Map<String, dynamic> json) =>
+      _$CrystalFromJson(json);
 }

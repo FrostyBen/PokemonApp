@@ -9,6 +9,7 @@ import 'generation_v.dart';
 import 'generation_vii.dart';
 import 'generation_viii.dart';
 part 'versions.freezed.dart';
+part 'versions.g.dart';
 
 @freezed
 class Versions with _$Versions {
@@ -22,4 +23,6 @@ class Versions with _$Versions {
     required GenerationVii generationVii,
     required GenerationViii generationViii,
   }) = _Versions;
+  factory Versions.fromJson(Map<String, dynamic> json) =>
+      _$VersionsFromJson(json);
 }

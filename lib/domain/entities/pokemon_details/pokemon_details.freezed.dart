@@ -14,8 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+PokemonDetails _$PokemonDetailsFromJson(Map<String, dynamic> json) {
+  return _PokemonDetails.fromJson(json);
+}
+
 /// @nodoc
-mixin _$PokemonDetailsModel {
+mixin _$PokemonDetails {
   List<Species> get forms => throw _privateConstructorUsedError;
   int get height => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
@@ -28,16 +32,17 @@ mixin _$PokemonDetailsModel {
   List<PokemonType> get types => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PokemonDetailsModelCopyWith<PokemonDetailsModel> get copyWith =>
+  $PokemonDetailsCopyWith<PokemonDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PokemonDetailsModelCopyWith<$Res> {
-  factory $PokemonDetailsModelCopyWith(
-          PokemonDetailsModel value, $Res Function(PokemonDetailsModel) then) =
-      _$PokemonDetailsModelCopyWithImpl<$Res>;
+abstract class $PokemonDetailsCopyWith<$Res> {
+  factory $PokemonDetailsCopyWith(
+          PokemonDetails value, $Res Function(PokemonDetails) then) =
+      _$PokemonDetailsCopyWithImpl<$Res>;
   $Res call(
       {List<Species> forms,
       int height,
@@ -56,13 +61,13 @@ abstract class $PokemonDetailsModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PokemonDetailsModelCopyWithImpl<$Res>
-    implements $PokemonDetailsModelCopyWith<$Res> {
-  _$PokemonDetailsModelCopyWithImpl(this._value, this._then);
+class _$PokemonDetailsCopyWithImpl<$Res>
+    implements $PokemonDetailsCopyWith<$Res> {
+  _$PokemonDetailsCopyWithImpl(this._value, this._then);
 
-  final PokemonDetailsModel _value;
+  final PokemonDetails _value;
   // ignore: unused_field
-  final $Res Function(PokemonDetailsModel) _then;
+  final $Res Function(PokemonDetails) _then;
 
   @override
   $Res call({
@@ -142,11 +147,11 @@ class _$PokemonDetailsModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_PokemonDetailsModelCopyWith<$Res>
-    implements $PokemonDetailsModelCopyWith<$Res> {
-  factory _$$_PokemonDetailsModelCopyWith(_$_PokemonDetailsModel value,
-          $Res Function(_$_PokemonDetailsModel) then) =
-      __$$_PokemonDetailsModelCopyWithImpl<$Res>;
+abstract class _$$_PokemonDetailsCopyWith<$Res>
+    implements $PokemonDetailsCopyWith<$Res> {
+  factory _$$_PokemonDetailsCopyWith(
+          _$_PokemonDetails value, $Res Function(_$_PokemonDetails) then) =
+      __$$_PokemonDetailsCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<Species> forms,
@@ -168,15 +173,15 @@ abstract class _$$_PokemonDetailsModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PokemonDetailsModelCopyWithImpl<$Res>
-    extends _$PokemonDetailsModelCopyWithImpl<$Res>
-    implements _$$_PokemonDetailsModelCopyWith<$Res> {
-  __$$_PokemonDetailsModelCopyWithImpl(_$_PokemonDetailsModel _value,
-      $Res Function(_$_PokemonDetailsModel) _then)
-      : super(_value, (v) => _then(v as _$_PokemonDetailsModel));
+class __$$_PokemonDetailsCopyWithImpl<$Res>
+    extends _$PokemonDetailsCopyWithImpl<$Res>
+    implements _$$_PokemonDetailsCopyWith<$Res> {
+  __$$_PokemonDetailsCopyWithImpl(
+      _$_PokemonDetails _value, $Res Function(_$_PokemonDetails) _then)
+      : super(_value, (v) => _then(v as _$_PokemonDetails));
 
   @override
-  _$_PokemonDetailsModel get _value => super._value as _$_PokemonDetailsModel;
+  _$_PokemonDetails get _value => super._value as _$_PokemonDetails;
 
   @override
   $Res call({
@@ -192,7 +197,7 @@ class __$$_PokemonDetailsModelCopyWithImpl<$Res>
     Object? types = freezed,
     Object? weight = freezed,
   }) {
-    return _then(_$_PokemonDetailsModel(
+    return _then(_$_PokemonDetails(
       forms: forms == freezed
           ? _value._forms
           : forms // ignore: cast_nullable_to_non_nullable
@@ -242,9 +247,9 @@ class __$$_PokemonDetailsModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$_PokemonDetailsModel implements _PokemonDetailsModel {
-  _$_PokemonDetailsModel(
+@JsonSerializable()
+class _$_PokemonDetails implements _PokemonDetails {
+  _$_PokemonDetails(
       {required final List<Species> forms,
       required this.height,
       required this.id,
@@ -259,6 +264,9 @@ class _$_PokemonDetailsModel implements _PokemonDetailsModel {
       : _forms = forms,
         _pastTypes = pastTypes,
         _types = types;
+
+  factory _$_PokemonDetails.fromJson(Map<String, dynamic> json) =>
+      _$$_PokemonDetailsFromJson(json);
 
   final List<Species> _forms;
   @override
@@ -300,14 +308,14 @@ class _$_PokemonDetailsModel implements _PokemonDetailsModel {
 
   @override
   String toString() {
-    return 'PokemonDetailsModel(forms: $forms, height: $height, id: $id, isDefault: $isDefault, name: $name, order: $order, pastTypes: $pastTypes, species: $species, sprites: $sprites, types: $types, weight: $weight)';
+    return 'PokemonDetails(forms: $forms, height: $height, id: $id, isDefault: $isDefault, name: $name, order: $order, pastTypes: $pastTypes, species: $species, sprites: $sprites, types: $types, weight: $weight)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PokemonDetailsModel &&
+            other is _$_PokemonDetails &&
             const DeepCollectionEquality().equals(other._forms, _forms) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality().equals(other.id, id) &&
@@ -322,6 +330,7 @@ class _$_PokemonDetailsModel implements _PokemonDetailsModel {
             const DeepCollectionEquality().equals(other.weight, weight));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -339,13 +348,19 @@ class _$_PokemonDetailsModel implements _PokemonDetailsModel {
 
   @JsonKey(ignore: true)
   @override
-  _$$_PokemonDetailsModelCopyWith<_$_PokemonDetailsModel> get copyWith =>
-      __$$_PokemonDetailsModelCopyWithImpl<_$_PokemonDetailsModel>(
-          this, _$identity);
+  _$$_PokemonDetailsCopyWith<_$_PokemonDetails> get copyWith =>
+      __$$_PokemonDetailsCopyWithImpl<_$_PokemonDetails>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PokemonDetailsToJson(
+      this,
+    );
+  }
 }
 
-abstract class _PokemonDetailsModel implements PokemonDetailsModel {
-  factory _PokemonDetailsModel(
+abstract class _PokemonDetails implements PokemonDetails {
+  factory _PokemonDetails(
       {required final List<Species> forms,
       required final int height,
       required final int id,
@@ -356,7 +371,10 @@ abstract class _PokemonDetailsModel implements PokemonDetailsModel {
       required final Species species,
       required final Sprites sprites,
       required final List<PokemonType> types,
-      required final int weight}) = _$_PokemonDetailsModel;
+      required final int weight}) = _$_PokemonDetails;
+
+  factory _PokemonDetails.fromJson(Map<String, dynamic> json) =
+      _$_PokemonDetails.fromJson;
 
   @override
   List<Species> get forms;
@@ -382,6 +400,6 @@ abstract class _PokemonDetailsModel implements PokemonDetailsModel {
   int get weight;
   @override
   @JsonKey(ignore: true)
-  _$$_PokemonDetailsModelCopyWith<_$_PokemonDetailsModel> get copyWith =>
+  _$$_PokemonDetailsCopyWith<_$_PokemonDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }

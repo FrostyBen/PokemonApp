@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+GenerationI _$GenerationIFromJson(Map<String, dynamic> json) {
+  return _GenerationI.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GenerationI {
   RedBlue get redBlue => throw _privateConstructorUsedError;
   RedBlue get yellow => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenerationICopyWith<GenerationI> get copyWith =>
       throw _privateConstructorUsedError;
@@ -119,9 +124,12 @@ class __$$_GenerationICopyWithImpl<$Res> extends _$GenerationICopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_GenerationI implements _GenerationI {
   _$_GenerationI({required this.redBlue, required this.yellow});
+
+  factory _$_GenerationI.fromJson(Map<String, dynamic> json) =>
+      _$$_GenerationIFromJson(json);
 
   @override
   final RedBlue redBlue;
@@ -142,6 +150,7 @@ class _$_GenerationI implements _GenerationI {
             const DeepCollectionEquality().equals(other.yellow, yellow));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -152,12 +161,22 @@ class _$_GenerationI implements _GenerationI {
   @override
   _$$_GenerationICopyWith<_$_GenerationI> get copyWith =>
       __$$_GenerationICopyWithImpl<_$_GenerationI>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GenerationIToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GenerationI implements GenerationI {
   factory _GenerationI(
       {required final RedBlue redBlue,
       required final RedBlue yellow}) = _$_GenerationI;
+
+  factory _GenerationI.fromJson(Map<String, dynamic> json) =
+      _$_GenerationI.fromJson;
 
   @override
   RedBlue get redBlue;

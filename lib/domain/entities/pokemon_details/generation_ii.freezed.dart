@@ -14,12 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+GenerationIi _$GenerationIiFromJson(Map<String, dynamic> json) {
+  return _GenerationIi.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GenerationIi {
   Crystal get crystal => throw _privateConstructorUsedError;
   Gold get gold => throw _privateConstructorUsedError;
   Gold get silver => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GenerationIiCopyWith<GenerationIi> get copyWith =>
       throw _privateConstructorUsedError;
@@ -141,10 +146,13 @@ class __$$_GenerationIiCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_GenerationIi implements _GenerationIi {
   _$_GenerationIi(
       {required this.crystal, required this.gold, required this.silver});
+
+  factory _$_GenerationIi.fromJson(Map<String, dynamic> json) =>
+      _$$_GenerationIiFromJson(json);
 
   @override
   final Crystal crystal;
@@ -168,6 +176,7 @@ class _$_GenerationIi implements _GenerationIi {
             const DeepCollectionEquality().equals(other.silver, silver));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -179,6 +188,13 @@ class _$_GenerationIi implements _GenerationIi {
   @override
   _$$_GenerationIiCopyWith<_$_GenerationIi> get copyWith =>
       __$$_GenerationIiCopyWithImpl<_$_GenerationIi>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GenerationIiToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GenerationIi implements GenerationIi {
@@ -186,6 +202,9 @@ abstract class _GenerationIi implements GenerationIi {
       {required final Crystal crystal,
       required final Gold gold,
       required final Gold silver}) = _$_GenerationIi;
+
+  factory _GenerationIi.fromJson(Map<String, dynamic> json) =
+      _$_GenerationIi.fromJson;
 
   @override
   Crystal get crystal;

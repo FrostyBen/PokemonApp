@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+RedBlue _$RedBlueFromJson(Map<String, dynamic> json) {
+  return _RedBlue.fromJson(json);
+}
+
 /// @nodoc
 mixin _$RedBlue {
   String get backDefault => throw _privateConstructorUsedError;
@@ -23,6 +27,7 @@ mixin _$RedBlue {
   String get frontGray => throw _privateConstructorUsedError;
   String get frontTransparent => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RedBlueCopyWith<RedBlue> get copyWith => throw _privateConstructorUsedError;
 }
@@ -149,7 +154,7 @@ class __$$_RedBlueCopyWithImpl<$Res> extends _$RedBlueCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_RedBlue implements _RedBlue {
   _$_RedBlue(
       {required this.backDefault,
@@ -158,6 +163,9 @@ class _$_RedBlue implements _RedBlue {
       required this.frontDefault,
       required this.frontGray,
       required this.frontTransparent});
+
+  factory _$_RedBlue.fromJson(Map<String, dynamic> json) =>
+      _$$_RedBlueFromJson(json);
 
   @override
   final String backDefault;
@@ -194,6 +202,7 @@ class _$_RedBlue implements _RedBlue {
                 .equals(other.frontTransparent, frontTransparent));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -208,6 +217,13 @@ class _$_RedBlue implements _RedBlue {
   @override
   _$$_RedBlueCopyWith<_$_RedBlue> get copyWith =>
       __$$_RedBlueCopyWithImpl<_$_RedBlue>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RedBlueToJson(
+      this,
+    );
+  }
 }
 
 abstract class _RedBlue implements RedBlue {
@@ -218,6 +234,8 @@ abstract class _RedBlue implements RedBlue {
       required final String frontDefault,
       required final String frontGray,
       required final String frontTransparent}) = _$_RedBlue;
+
+  factory _RedBlue.fromJson(Map<String, dynamic> json) = _$_RedBlue.fromJson;
 
   @override
   String get backDefault;

@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+PokemonType _$PokemonTypeFromJson(Map<String, dynamic> json) {
+  return _PokemonType.fromJson(json);
+}
+
 /// @nodoc
 mixin _$PokemonType {
   int get slot => throw _privateConstructorUsedError;
   Species get type => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PokemonTypeCopyWith<PokemonType> get copyWith =>
       throw _privateConstructorUsedError;
@@ -109,9 +114,12 @@ class __$$_PokemonTypeCopyWithImpl<$Res> extends _$PokemonTypeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_PokemonType implements _PokemonType {
   _$_PokemonType({required this.slot, required this.type});
+
+  factory _$_PokemonType.fromJson(Map<String, dynamic> json) =>
+      _$$_PokemonTypeFromJson(json);
 
   @override
   final int slot;
@@ -132,6 +140,7 @@ class _$_PokemonType implements _PokemonType {
             const DeepCollectionEquality().equals(other.type, type));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -142,11 +151,21 @@ class _$_PokemonType implements _PokemonType {
   @override
   _$$_PokemonTypeCopyWith<_$_PokemonType> get copyWith =>
       __$$_PokemonTypeCopyWithImpl<_$_PokemonType>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PokemonTypeToJson(
+      this,
+    );
+  }
 }
 
 abstract class _PokemonType implements PokemonType {
   factory _PokemonType({required final int slot, required final Species type}) =
       _$_PokemonType;
+
+  factory _PokemonType.fromJson(Map<String, dynamic> json) =
+      _$_PokemonType.fromJson;
 
   @override
   int get slot;
