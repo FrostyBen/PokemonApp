@@ -15,6 +15,7 @@ part 'pokemon_state.dart';
 
 class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
   int page = 0;
+
   final InterfaceRepository pokemonDataSource;
   PokemonBloc({required this.pokemonDataSource}) : super(Initial()) {
     on<GetPokemons>(
@@ -22,10 +23,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         final pokemon = await pokemonDataSource.getPokemons(page);
 
         try {
-          final oldPokemons = <Pokemon>[];
-
-          emit(PokemonState.loading(
-              oldPokemons: oldPokemons, isFirstfetch: page == 0));
+          emit(PokemonState.loading());
 
           emit(
             PokemonState.loaded(
@@ -44,27 +42,24 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         if (currentState is Loaded) {
           pokemons = currentState.pokemons.toList();
           emit(currentState.copyWith(isLoading: true));
-        }
-        else{
-        emit(PokemonState.loading(
-            oldPokemons: pokemons, isFirstfetch: page == 0));
-
+        } else {
+          emit(PokemonState.loading());
         }
         page += 10;
         final newPokemons = await pokemonDataSource.getPokemons(page);
 
-        
-
         pokemons.addAll(newPokemons);
         emit(
-          PokemonState.loaded(
-            pokemons: pokemons,
-            isLoading: false
-          ),
+          PokemonState.loaded(pokemons: pokemons, isLoading: false),
         );
       } catch (e) {
         return emit(PokemonState.error());
       }
+    }));
+    on<Refresh>(((event, emit) async {
+      final pokemon =
+          await pokemonDataSource.getPokemons(page, reload: event.refresh);
+      emit(PokemonState.loaded(pokemons: pokemon));
     }));
   }
 }

@@ -61,28 +61,33 @@ class _HomePageState extends State<HomePage> {
             inital: () {
               return Container();
             },
-            loading: (List<Pokemon> pokemons, bool isFirstFetch) {
+            loading: () {
               return Center(child: CircularProgressIndicator());
             },
             error: () {
               return Container();
             },
             loaded: (List<Pokemon> pokemons, bool isLoading) {
-              return CustomScrollView(
-                controller: _scrollController,
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        return index >= pokemons.length
-                            ? BottomLoader()
-                            : PokemonsList(pokemon: pokemons[index]);
-                      },
-                      childCount:
-                          isLoading ? pokemons.length + 1 : pokemons.length,
+              return RefreshIndicator(
+                onRefresh: () async{
+                 return context.read<PokemonBloc>().add(Refresh(refresh: true));
+                },
+                child: CustomScrollView(
+                  controller: _scrollController,
+                  slivers: [
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return index >= pokemons.length
+                              ? BottomLoader()
+                              : PokemonsList(pokemon: pokemons[index]);
+                        },
+                        childCount:
+                            isLoading ? pokemons.length + 1 : pokemons.length,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           );
@@ -90,5 +95,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  
 }

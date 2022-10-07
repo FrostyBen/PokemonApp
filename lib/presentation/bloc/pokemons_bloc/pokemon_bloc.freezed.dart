@@ -20,18 +20,21 @@ mixin _$PokemonEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() loadMore,
+    required TResult Function(bool refresh) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$PokemonEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetPokemons value) start,
     required TResult Function(LoadMore value) loadMore,
+    required TResult Function(Refresh value) refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetPokemons value)? start,
     TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetPokemons value)? start,
     TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$GetPokemons with DiagnosticableTreeMixin implements GetPokemons {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() loadMore,
+    required TResult Function(bool refresh) refresh,
   }) {
     return start();
   }
@@ -129,6 +136,7 @@ class _$GetPokemons with DiagnosticableTreeMixin implements GetPokemons {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
   }) {
     return start?.call();
   }
@@ -138,6 +146,7 @@ class _$GetPokemons with DiagnosticableTreeMixin implements GetPokemons {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -151,6 +160,7 @@ class _$GetPokemons with DiagnosticableTreeMixin implements GetPokemons {
   TResult map<TResult extends Object?>({
     required TResult Function(GetPokemons value) start,
     required TResult Function(LoadMore value) loadMore,
+    required TResult Function(Refresh value) refresh,
   }) {
     return start(this);
   }
@@ -160,6 +170,7 @@ class _$GetPokemons with DiagnosticableTreeMixin implements GetPokemons {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetPokemons value)? start,
     TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
   }) {
     return start?.call(this);
   }
@@ -169,6 +180,7 @@ class _$GetPokemons with DiagnosticableTreeMixin implements GetPokemons {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetPokemons value)? start,
     TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -229,6 +241,7 @@ class _$LoadMore with DiagnosticableTreeMixin implements LoadMore {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() loadMore,
+    required TResult Function(bool refresh) refresh,
   }) {
     return loadMore();
   }
@@ -238,6 +251,7 @@ class _$LoadMore with DiagnosticableTreeMixin implements LoadMore {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
   }) {
     return loadMore?.call();
   }
@@ -247,6 +261,7 @@ class _$LoadMore with DiagnosticableTreeMixin implements LoadMore {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
     required TResult orElse(),
   }) {
     if (loadMore != null) {
@@ -260,6 +275,7 @@ class _$LoadMore with DiagnosticableTreeMixin implements LoadMore {
   TResult map<TResult extends Object?>({
     required TResult Function(GetPokemons value) start,
     required TResult Function(LoadMore value) loadMore,
+    required TResult Function(Refresh value) refresh,
   }) {
     return loadMore(this);
   }
@@ -269,6 +285,7 @@ class _$LoadMore with DiagnosticableTreeMixin implements LoadMore {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetPokemons value)? start,
     TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
   }) {
     return loadMore?.call(this);
   }
@@ -278,6 +295,7 @@ class _$LoadMore with DiagnosticableTreeMixin implements LoadMore {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetPokemons value)? start,
     TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
     required TResult orElse(),
   }) {
     if (loadMore != null) {
@@ -292,12 +310,156 @@ abstract class LoadMore implements PokemonEvent {
 }
 
 /// @nodoc
+abstract class _$$RefreshCopyWith<$Res> {
+  factory _$$RefreshCopyWith(_$Refresh value, $Res Function(_$Refresh) then) =
+      __$$RefreshCopyWithImpl<$Res>;
+  $Res call({bool refresh});
+}
+
+/// @nodoc
+class __$$RefreshCopyWithImpl<$Res> extends _$PokemonEventCopyWithImpl<$Res>
+    implements _$$RefreshCopyWith<$Res> {
+  __$$RefreshCopyWithImpl(_$Refresh _value, $Res Function(_$Refresh) _then)
+      : super(_value, (v) => _then(v as _$Refresh));
+
+  @override
+  _$Refresh get _value => super._value as _$Refresh;
+
+  @override
+  $Res call({
+    Object? refresh = freezed,
+  }) {
+    return _then(_$Refresh(
+      refresh: refresh == freezed
+          ? _value.refresh
+          : refresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Refresh with DiagnosticableTreeMixin implements Refresh {
+  const _$Refresh({required this.refresh});
+
+  @override
+  final bool refresh;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PokemonEvent.refresh(refresh: $refresh)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PokemonEvent.refresh'))
+      ..add(DiagnosticsProperty('refresh', refresh));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Refresh &&
+            const DeepCollectionEquality().equals(other.refresh, refresh));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(refresh));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$RefreshCopyWith<_$Refresh> get copyWith =>
+      __$$RefreshCopyWithImpl<_$Refresh>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function() loadMore,
+    required TResult Function(bool refresh) refresh,
+  }) {
+    return refresh(this.refresh);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
+  }) {
+    return refresh?.call(this.refresh);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? loadMore,
+    TResult Function(bool refresh)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this.refresh);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetPokemons value) start,
+    required TResult Function(LoadMore value) loadMore,
+    required TResult Function(Refresh value) refresh,
+  }) {
+    return refresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetPokemons value)? start,
+    TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
+  }) {
+    return refresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetPokemons value)? start,
+    TResult Function(LoadMore value)? loadMore,
+    TResult Function(Refresh value)? refresh,
+    required TResult orElse(),
+  }) {
+    if (refresh != null) {
+      return refresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Refresh implements PokemonEvent {
+  const factory Refresh({required final bool refresh}) = _$Refresh;
+
+  bool get refresh;
+  @JsonKey(ignore: true)
+  _$$RefreshCopyWith<_$Refresh> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$PokemonState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
-    required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
-        loading,
+    required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) =>
@@ -305,7 +467,7 @@ mixin _$PokemonState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) =>
@@ -313,7 +475,7 @@ mixin _$PokemonState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
@@ -407,8 +569,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
-    required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
-        loading,
+    required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
@@ -419,7 +580,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
@@ -430,7 +591,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
@@ -487,7 +648,6 @@ abstract class Initial implements PokemonState {
 abstract class _$$LoadingCopyWith<$Res> {
   factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
       __$$LoadingCopyWithImpl<$Res>;
-  $Res call({List<Pokemon> oldPokemons, bool isFirstfetch});
 }
 
 /// @nodoc
@@ -498,112 +658,66 @@ class __$$LoadingCopyWithImpl<$Res> extends _$PokemonStateCopyWithImpl<$Res>
 
   @override
   _$Loading get _value => super._value as _$Loading;
-
-  @override
-  $Res call({
-    Object? oldPokemons = freezed,
-    Object? isFirstfetch = freezed,
-  }) {
-    return _then(_$Loading(
-      oldPokemons: oldPokemons == freezed
-          ? _value._oldPokemons
-          : oldPokemons // ignore: cast_nullable_to_non_nullable
-              as List<Pokemon>,
-      isFirstfetch: isFirstfetch == freezed
-          ? _value.isFirstfetch
-          : isFirstfetch // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$Loading with DiagnosticableTreeMixin implements Loading {
-  _$Loading(
-      {required final List<Pokemon> oldPokemons, required this.isFirstfetch})
-      : _oldPokemons = oldPokemons;
-
-  final List<Pokemon> _oldPokemons;
-  @override
-  List<Pokemon> get oldPokemons {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_oldPokemons);
-  }
-
-  @override
-  final bool isFirstfetch;
+  _$Loading();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PokemonState.loading(oldPokemons: $oldPokemons, isFirstfetch: $isFirstfetch)';
+    return 'PokemonState.loading()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'PokemonState.loading'))
-      ..add(DiagnosticsProperty('oldPokemons', oldPokemons))
-      ..add(DiagnosticsProperty('isFirstfetch', isFirstfetch));
+    properties.add(DiagnosticsProperty('type', 'PokemonState.loading'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Loading &&
-            const DeepCollectionEquality()
-                .equals(other._oldPokemons, _oldPokemons) &&
-            const DeepCollectionEquality()
-                .equals(other.isFirstfetch, isFirstfetch));
+        (other.runtimeType == runtimeType && other is _$Loading);
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_oldPokemons),
-      const DeepCollectionEquality().hash(isFirstfetch));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$LoadingCopyWith<_$Loading> get copyWith =>
-      __$$LoadingCopyWithImpl<_$Loading>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
-    required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
-        loading,
+    required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
-    return loading(oldPokemons, isFirstfetch);
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
-    return loading?.call(oldPokemons, isFirstfetch);
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(oldPokemons, isFirstfetch);
+      return loading();
     }
     return orElse();
   }
@@ -647,15 +761,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
 }
 
 abstract class Loading implements PokemonState {
-  factory Loading(
-      {required final List<Pokemon> oldPokemons,
-      required final bool isFirstfetch}) = _$Loading;
-
-  List<Pokemon> get oldPokemons;
-  bool get isFirstfetch;
-  @JsonKey(ignore: true)
-  _$$LoadingCopyWith<_$Loading> get copyWith =>
-      throw _privateConstructorUsedError;
+  factory Loading() = _$Loading;
 }
 
 /// @nodoc
@@ -703,8 +809,7 @@ class _$Error with DiagnosticableTreeMixin implements Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
-    required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
-        loading,
+    required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
@@ -715,7 +820,7 @@ class _$Error with DiagnosticableTreeMixin implements Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
@@ -726,7 +831,7 @@ class _$Error with DiagnosticableTreeMixin implements Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
@@ -868,8 +973,7 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
-    required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
-        loading,
+    required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
@@ -880,7 +984,7 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
@@ -891,7 +995,7 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
-    TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
+    TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),

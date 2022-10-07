@@ -3,10 +3,9 @@ part of 'pokemon_bloc.dart';
 @freezed
 class PokemonState with _$PokemonState {
   factory PokemonState.inital() = Initial;
-  
+
   factory PokemonState.loading(
-      {required List<Pokemon> oldPokemons,
-      required bool isFirstfetch}) = Loading;
+     ) = Loading;
 
   factory PokemonState.error() = Error;
 
