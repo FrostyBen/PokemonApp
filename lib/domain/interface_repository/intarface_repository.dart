@@ -7,5 +7,5 @@ import '../entities/pokemons/result.dart';
 
 abstract class InterfaceRepository {
   Future<List<Pokemon>> getPokemons(int page);
-  Future<PokemonDetails> getPokemonDetails();
+  Future<PokemonDetails> getPokemonDetails(Pokemon pokemon);
 }

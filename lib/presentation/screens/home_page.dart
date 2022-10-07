@@ -10,7 +10,8 @@ import 'package:pokemon_app/main.dart';
 import 'package:pokemon_app/presentation/widgets/pokemons_list.dart';
 
 import '../../domain/entities/pokemons/result.dart';
-import '../bloc/pokemon_bloc.dart';
+import '../bloc/pokemons_bloc/pokemon_bloc.dart';
+import '../widgets/bottom_loader.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -20,22 +21,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final scrollController = ScrollController();
+  final _scrollController = ScrollController();
+  void _onScroll() {
+    if (_isBottom) context.read<PokemonBloc>().add(PokemonEvent.loadMore());
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxControll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxControll * 0.9);
+  }
 
   void setupScrollController(BuildContext context) {
-    scrollController.addListener(() {
-      if (scrollController.position.atEdge) {
-        if (scrollController.position.pixels != 0) {
-          context.read<PokemonBloc>().add(PokemonEvent.loadMore());
-        }
+    _scrollController.addListener(() {
+      if (_scrollController.hasClients) {
+        if (_scrollController.position.pixels != 0) {}
       }
     });
   }
 
   @override
   void initState() {
-    setupScrollController(context);
     super.initState();
+    _scrollController.addListener(_onScroll);
   }
 
   @override
@@ -48,40 +57,38 @@ class _HomePageState extends State<HomePage> {
       ),
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {
-          return state.when(inital: () {
-            return Container();
-          }, loading: (List<Pokemon> pokemons, bool isFirstFetch) {
-            return Center(child: CircularProgressIndicator());
-          }, error: () {
-            return Container();
-          }, loaded: (List<Pokemon> pokemons, PokemonDetails pokemonDetails) {
-            return CustomScrollView(
-              controller: scrollController,
-              slivers: [
-                SliverAnimatedList(
-                  itemBuilder: ((context, index, animation) {
-                    if (index < pokemons.length) {
-                      return PokemonsList(pokemon: pokemons[index]);
-                    } else {
-                      Timer(
-                        Duration(milliseconds: 30),
-                        () {
-                          scrollController.jumpTo(
-                              scrollController.position.maxScrollExtent);
-                        },
-                      );
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  }),
-                  initialItemCount: pokemons.length,
-                ),
-              ],
-            );
-          });
+          return state.when(
+            inital: () {
+              return Container();
+            },
+            loading: (List<Pokemon> pokemons, bool isFirstFetch) {
+              return Center(child: CircularProgressIndicator());
+            },
+            error: () {
+              return Container();
+            },
+            loaded: (List<Pokemon> pokemons, bool isLoading) {
+              return CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return index >= pokemons.length
+                            ? BottomLoader()
+                            : PokemonsList(pokemon: pokemons[index]);
+                      },
+                      childCount:
+                          isLoading ? pokemons.length + 1 : pokemons.length,
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
         },
       ),
     );
   }
+  
 }

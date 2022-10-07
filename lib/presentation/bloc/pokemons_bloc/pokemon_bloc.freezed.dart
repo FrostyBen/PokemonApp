@@ -299,9 +299,7 @@ mixin _$PokemonState {
     required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
         loading,
     required TResult Function() error,
-    required TResult Function(
-            List<Pokemon> pokemons, PokemonDetails pokemonDetails)
-        loaded,
+    required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -309,8 +307,7 @@ mixin _$PokemonState {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -318,8 +315,7 @@ mixin _$PokemonState {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -414,9 +410,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
     required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
         loading,
     required TResult Function() error,
-    required TResult Function(
-            List<Pokemon> pokemons, PokemonDetails pokemonDetails)
-        loaded,
+    required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
     return inital();
   }
@@ -427,8 +421,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
     return inital?.call();
   }
@@ -439,8 +432,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
   }) {
     if (inital != null) {
@@ -585,9 +577,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
         loading,
     required TResult Function() error,
-    required TResult Function(
-            List<Pokemon> pokemons, PokemonDetails pokemonDetails)
-        loaded,
+    required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
     return loading(oldPokemons, isFirstfetch);
   }
@@ -598,8 +588,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
     return loading?.call(oldPokemons, isFirstfetch);
   }
@@ -610,8 +599,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -718,9 +706,7 @@ class _$Error with DiagnosticableTreeMixin implements Error {
     required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
         loading,
     required TResult Function() error,
-    required TResult Function(
-            List<Pokemon> pokemons, PokemonDetails pokemonDetails)
-        loaded,
+    required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
     return error();
   }
@@ -731,8 +717,7 @@ class _$Error with DiagnosticableTreeMixin implements Error {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
     return error?.call();
   }
@@ -743,8 +728,7 @@ class _$Error with DiagnosticableTreeMixin implements Error {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -799,9 +783,7 @@ abstract class Error implements PokemonState {
 abstract class _$$LoadedCopyWith<$Res> {
   factory _$$LoadedCopyWith(_$Loaded value, $Res Function(_$Loaded) then) =
       __$$LoadedCopyWithImpl<$Res>;
-  $Res call({List<Pokemon> pokemons, PokemonDetails pokemonDetails});
-
-  $PokemonDetailsCopyWith<$Res> get pokemonDetails;
+  $Res call({List<Pokemon> pokemons, bool isLoading});
 }
 
 /// @nodoc
@@ -816,33 +798,25 @@ class __$$LoadedCopyWithImpl<$Res> extends _$PokemonStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? pokemons = freezed,
-    Object? pokemonDetails = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_$Loaded(
       pokemons: pokemons == freezed
           ? _value._pokemons
           : pokemons // ignore: cast_nullable_to_non_nullable
               as List<Pokemon>,
-      pokemonDetails: pokemonDetails == freezed
-          ? _value.pokemonDetails
-          : pokemonDetails // ignore: cast_nullable_to_non_nullable
-              as PokemonDetails,
+      isLoading: isLoading == freezed
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
-  }
-
-  @override
-  $PokemonDetailsCopyWith<$Res> get pokemonDetails {
-    return $PokemonDetailsCopyWith<$Res>(_value.pokemonDetails, (value) {
-      return _then(_value.copyWith(pokemonDetails: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$Loaded with DiagnosticableTreeMixin implements Loaded {
-  _$Loaded(
-      {required final List<Pokemon> pokemons, required this.pokemonDetails})
+  _$Loaded({required final List<Pokemon> pokemons, this.isLoading = false})
       : _pokemons = pokemons;
 
   final List<Pokemon> _pokemons;
@@ -853,11 +827,12 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
   }
 
   @override
-  final PokemonDetails pokemonDetails;
+  @JsonKey()
+  final bool isLoading;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PokemonState.loaded(pokemons: $pokemons, pokemonDetails: $pokemonDetails)';
+    return 'PokemonState.loaded(pokemons: $pokemons, isLoading: $isLoading)';
   }
 
   @override
@@ -866,7 +841,7 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
     properties
       ..add(DiagnosticsProperty('type', 'PokemonState.loaded'))
       ..add(DiagnosticsProperty('pokemons', pokemons))
-      ..add(DiagnosticsProperty('pokemonDetails', pokemonDetails));
+      ..add(DiagnosticsProperty('isLoading', isLoading));
   }
 
   @override
@@ -875,15 +850,14 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
         (other.runtimeType == runtimeType &&
             other is _$Loaded &&
             const DeepCollectionEquality().equals(other._pokemons, _pokemons) &&
-            const DeepCollectionEquality()
-                .equals(other.pokemonDetails, pokemonDetails));
+            const DeepCollectionEquality().equals(other.isLoading, isLoading));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_pokemons),
-      const DeepCollectionEquality().hash(pokemonDetails));
+      const DeepCollectionEquality().hash(isLoading));
 
   @JsonKey(ignore: true)
   @override
@@ -897,11 +871,9 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
     required TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)
         loading,
     required TResult Function() error,
-    required TResult Function(
-            List<Pokemon> pokemons, PokemonDetails pokemonDetails)
-        loaded,
+    required TResult Function(List<Pokemon> pokemons, bool isLoading) loaded,
   }) {
-    return loaded(pokemons, pokemonDetails);
+    return loaded(pokemons, isLoading);
   }
 
   @override
@@ -910,10 +882,9 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
   }) {
-    return loaded?.call(pokemons, pokemonDetails);
+    return loaded?.call(pokemons, isLoading);
   }
 
   @override
@@ -922,12 +893,11 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
     TResult Function()? inital,
     TResult Function(List<Pokemon> oldPokemons, bool isFirstfetch)? loading,
     TResult Function()? error,
-    TResult Function(List<Pokemon> pokemons, PokemonDetails pokemonDetails)?
-        loaded,
+    TResult Function(List<Pokemon> pokemons, bool isLoading)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(pokemons, pokemonDetails);
+      return loaded(pokemons, isLoading);
     }
     return orElse();
   }
@@ -972,11 +942,10 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
 
 abstract class Loaded implements PokemonState {
   factory Loaded(
-      {required final List<Pokemon> pokemons,
-      required final PokemonDetails pokemonDetails}) = _$Loaded;
+      {required final List<Pokemon> pokemons, final bool isLoading}) = _$Loaded;
 
   List<Pokemon> get pokemons;
-  PokemonDetails get pokemonDetails;
+  bool get isLoading;
   @JsonKey(ignore: true)
   _$$LoadedCopyWith<_$Loaded> get copyWith =>
       throw _privateConstructorUsedError;

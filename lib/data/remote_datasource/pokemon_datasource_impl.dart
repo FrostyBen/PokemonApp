@@ -4,21 +4,17 @@ import 'package:pokemon_app/domain/interface_repository/intarface_repository.dar
 
 import '../../domain/entities/pokemons/result.dart';
 
-
-
-class PokemonDatasourceImpl extends InterfaceRepository{
+class PokemonDatasourceImpl extends InterfaceRepository {
   final PokemonDatasource pokemonDatasource;
-
-  PokemonDatasourceImpl({required this.pokemonDatasource});
+  
+  PokemonDatasourceImpl({ required this.pokemonDatasource});
   @override
   Future<List<Pokemon>> getPokemons(int page) {
-   return pokemonDatasource.getPokemons(page);
+    return pokemonDatasource.getPokemons(page);
   }
 
   @override
-  Future<PokemonDetails> getPokemonDetails() {
-    
-    return pokemonDatasource.getPokemonDetails();
+  Future<PokemonDetails> getPokemonDetails(Pokemon pokemon) {
+    return pokemonDatasource.getPokemonDetails(pokemon.url);
   }
-
 }
