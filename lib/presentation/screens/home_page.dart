@@ -33,12 +33,8 @@ class _HomePageState extends State<HomePage> {
     return currentScroll >= (maxControll * 0.9);
   }
 
-  void setupScrollController(BuildContext context) {
-    _scrollController.addListener(() {
-      if (_scrollController.hasClients) {
-        if (_scrollController.position.pixels != 0) {}
-      }
-    });
+   _refresh() async {
+    return BlocProvider.of<PokemonBloc>(context)..add(Refresh());
   }
 
   @override
@@ -67,10 +63,12 @@ class _HomePageState extends State<HomePage> {
             error: () {
               return Container();
             },
-            loaded: (List<Pokemon> pokemons, bool isLoading) {
+            loaded: (List<Pokemon> pokemons, bool isLoading, bool isRefresh) {
               return RefreshIndicator(
-                onRefresh: () async{
-                 return context.read<PokemonBloc>().add(Refresh(refresh: true));
+                onRefresh: () async {
+                  final bloc = context.read<PokemonBloc>().stream.first;
+                  _refresh();
+                  await bloc;
                 },
                 child: CustomScrollView(
                   controller: _scrollController,

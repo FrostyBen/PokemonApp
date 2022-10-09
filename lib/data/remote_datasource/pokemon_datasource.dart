@@ -19,7 +19,7 @@ class PokemonDatasource {
 
       return pokemons;
     } else {
-      throw 'unable to get pokemons';
+      throw 'something wrong';
     }
   }
 

@@ -6,6 +6,6 @@ import '../entities/pokemons/result.dart';
 
 
 abstract class InterfaceRepository {
-  Future<List<Pokemon>> getPokemons(int page, { bool reload = false});
-  Future<PokemonDetails> getPokemonDetails(Pokemon pokemon);
+  Future<dynamic> getPokemons(int page, { bool reload = false });
+  Future<PokemonDetails> getPokemonDetails(Pokemon pokemon, {bool reload = false});
 }

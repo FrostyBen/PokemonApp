@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -32,11 +33,11 @@ class PokemonProfile extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            child: Image.network(
-              details?.sprites.frontDefault ??
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3pwSh835leEYxL6qeHFZ15PUmhUu9V1mU9w&usqp=CAU',
+            child: CachedNetworkImage(
               height: 250,
               fit: BoxFit.fill,
+              imageUrl: details?.sprites.frontDefault ??
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3pwSh835leEYxL6qeHFZ15PUmhUu9V1mU9w&usqp=CAU',
             ),
           ),
           Text(

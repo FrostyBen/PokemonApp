@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:pokemon_app/data/remote_datasource/pokemon_datasource.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../domain/entities/pokemon_details/pokemon_details.dart';
 import '../../domain/entities/pokemons/result.dart';
 
 class LocalDataSource {
-  Future saveData(List<Pokemon> pokemons) async {
+  Future savePokemons(List<Pokemon> pokemons) async {
     final List<Map<String, dynamic>> pokemon =
         pokemons.map((e) => e.toJson()).toList();
 
@@ -14,7 +15,7 @@ class LocalDataSource {
     return preferences.setString('pokemons', jsonEncode(pokemon));
   }
 
-  Future<List<Pokemon>> getData() async {
+  Future<List<Pokemon>> getPokemons() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     final List<dynamic> decodedString =
@@ -22,5 +23,20 @@ class LocalDataSource {
     final decodedResult =
         decodedString.map((e) => Pokemon.fromJson(e)).toList();
     return decodedResult;
+  }
+
+  Future setDetails(PokemonDetails pokemonDetails) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final detailsMap = pokemonDetails.toJson();
+   
+    return sharedPreferences.setString(pokemonDetails.name, jsonEncode(detailsMap));
+  }
+
+  Future<PokemonDetails> getDetails(String pokemonName) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final decodedString =
+        jsonDecode(sharedPreferences.getString(pokemonName) ?? '') ?? {};
+    final decodeResult = PokemonDetails.fromJson(decodedString);
+    return decodeResult;
   }
 }

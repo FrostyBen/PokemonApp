@@ -8,6 +8,9 @@ import '../../domain/entities/pokemons/result.dart';
 
 class PokemonDetailPage extends StatelessWidget {
   const PokemonDetailPage({Key? key}) : super(key: key);
+  refresh(BuildContext context) {
+    return BlocProvider.of<DetailsBloc>(context).add(Refresh());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +23,19 @@ class PokemonDetailPage extends StatelessWidget {
                 inital: () => Container(),
                 loading: () => Container(),
                 error: () => Container(),
-                loaded: (PokemonDetails details) {
+                loaded: (PokemonDetails details, Pokemon pokemonData,
+                    bool isRefresh) {
                   return AppBar(
+                    actions: [
+                      IconButton(
+                          onPressed: () async {
+                            final bloc =
+                                context.read<DetailsBloc>().stream.first;
+                            refresh(context);
+                            await bloc;
+                          },
+                          icon: Icon(Icons.refresh)),
+                    ],
                     title: Padding(
                       padding: const EdgeInsets.only(left: 80),
                       child: Text(details.name),
@@ -39,7 +53,8 @@ class PokemonDetailPage extends StatelessWidget {
                 return Center(child: CircularProgressIndicator());
               },
               error: () => Container(),
-              loaded: (PokemonDetails details) {
+              loaded: (PokemonDetails details, Pokemon pokemonData,
+                  bool isRefresh) {
                 return PokemonProfile(
                   details: details,
                 );

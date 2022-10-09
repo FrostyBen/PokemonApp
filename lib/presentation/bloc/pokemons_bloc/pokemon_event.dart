@@ -5,6 +5,6 @@ part of 'pokemon_bloc.dart';
 class PokemonEvent with _$PokemonEvent{
  const factory PokemonEvent.start() = GetPokemons;
  const factory PokemonEvent.loadMore() = LoadMore;
- const factory PokemonEvent.refresh({required bool refresh}) = Refresh;
+ const factory PokemonEvent.refresh() = Refresh;
 }
 

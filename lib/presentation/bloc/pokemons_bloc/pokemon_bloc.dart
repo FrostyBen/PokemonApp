@@ -27,6 +27,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
 
           emit(
             PokemonState.loaded(
+              isRefresher: false,
               pokemons: pokemon,
             ),
           );
@@ -35,31 +36,38 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         }
       },
     );
-    on<LoadMore>(((event, emit) async {
-      List<Pokemon> pokemons = List.empty(growable: true);
-      try {
-        final PokemonState currentState = state;
-        if (currentState is Loaded) {
-          pokemons = currentState.pokemons.toList();
-          emit(currentState.copyWith(isLoading: true));
-        } else {
-          emit(PokemonState.loading());
-        }
-        page += 10;
-        final newPokemons = await pokemonDataSource.getPokemons(page);
+    on<LoadMore>(
+      ((event, emit) async {
+        List<Pokemon> pokemons = List.empty(growable: true);
+        try {
+          final PokemonState currentState = state;
+          if (currentState is Loaded) {
+            pokemons = currentState.pokemons.toList();
+            emit(currentState.copyWith(isLoading: true));
+          } else {
+            emit(PokemonState.loading());
+          }
+          page += 10;
+          final newPokemons = await pokemonDataSource.getPokemons(page);
 
-        pokemons.addAll(newPokemons);
-        emit(
-          PokemonState.loaded(pokemons: pokemons, isLoading: false),
-        );
-      } catch (e) {
-        return emit(PokemonState.error());
-      }
-    }));
-    on<Refresh>(((event, emit) async {
-      final pokemon =
-          await pokemonDataSource.getPokemons(page, reload: event.refresh);
-      emit(PokemonState.loaded(pokemons: pokemon));
-    }));
+          pokemons.addAll(newPokemons);
+          emit(
+            PokemonState.loaded(
+              pokemons: pokemons,
+              isLoading: false,
+              isRefresher: false,
+            ),
+          );
+        } catch (e) {
+          return emit(PokemonState.error());
+        }
+      }),
+    );
+    on<Refresh>(
+      ((event, emit) async {
+        final pokemon = await pokemonDataSource.getPokemons(0, reload: true);
+        emit(PokemonState.loaded(pokemons: pokemon, isRefresher: true));
+      }),
+    );
   }
 }

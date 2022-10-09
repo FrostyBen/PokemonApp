@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider<InterfaceRepository>(
       create: (context) =>
-          RepositoryImpl(pokemonDatasource: PokemonDatasource(), localDataSource: LocalDataSource()),
+          RepositoryImpl(remoteDatasource: PokemonDatasource(), localDataSource: LocalDataSource()),
       child: MultiBlocProvider(
         providers: [
           BlocProvider(

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pokemon_app/domain/entities/pokemon_details/pokemon_details.dart';
@@ -12,14 +13,33 @@ part 'details_state.dart';
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final InterfaceRepository pokemonDatasource;
   DetailsBloc({required this.pokemonDatasource}) : super(Initial()) {
-    on<GetDetails>((event, emit) async{
+    on<GetDetails>((event, emit) async {
       final details = await pokemonDatasource.getPokemonDetails(event.pokemon);
       try {
         emit(DetailsState.loading());
-        emit(DetailsState.loaded(details: details));
+        emit(DetailsState.loaded(details: details, pokemonData: event.pokemon));
       } catch (e) {
-       emit(DetailsState.error()); 
+        emit(DetailsState.error());
       }
     });
+    on<Refresh>(
+      ((event, emit) async {
+        final currentState = state;
+        if (currentState is Loaded) {
+          final detail = await pokemonDatasource
+              .getPokemonDetails(currentState.pokemonData,reload: true);
+          try {
+            emit(
+              DetailsState.loading(),
+            );
+            emit(
+              currentState.copyWith(isRefresh: true),
+            );
+          } catch (e) {
+            emit(DetailsState.error());
+          }
+        }
+      }),
+    );
   }
 }

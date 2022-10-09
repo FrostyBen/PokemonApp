@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DetailsEvent {
-  Pokemon get pokemon => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Pokemon pokemon) start,
+    required TResult Function() pokemonRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Pokemon pokemon)? start,
+    TResult Function()? pokemonRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Pokemon pokemon)? start,
+    TResult Function()? pokemonRefresh,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetDetails value) start,
+    required TResult Function(Refresh value) pokemonRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetDetails value)? start,
+    TResult Function(Refresh value)? pokemonRefresh,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetDetails value)? start,
+    TResult Function(Refresh value)? pokemonRefresh,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DetailsEventCopyWith<DetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,9 +61,6 @@ abstract class $DetailsEventCopyWith<$Res> {
   factory $DetailsEventCopyWith(
           DetailsEvent value, $Res Function(DetailsEvent) then) =
       _$DetailsEventCopyWithImpl<$Res>;
-  $Res call({Pokemon pokemon});
-
-  $PokemonCopyWith<$Res> get pokemon;
 }
 
 /// @nodoc
@@ -72,37 +70,15 @@ class _$DetailsEventCopyWithImpl<$Res> implements $DetailsEventCopyWith<$Res> {
   final DetailsEvent _value;
   // ignore: unused_field
   final $Res Function(DetailsEvent) _then;
-
-  @override
-  $Res call({
-    Object? pokemon = freezed,
-  }) {
-    return _then(_value.copyWith(
-      pokemon: pokemon == freezed
-          ? _value.pokemon
-          : pokemon // ignore: cast_nullable_to_non_nullable
-              as Pokemon,
-    ));
-  }
-
-  @override
-  $PokemonCopyWith<$Res> get pokemon {
-    return $PokemonCopyWith<$Res>(_value.pokemon, (value) {
-      return _then(_value.copyWith(pokemon: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$GetDetailsCopyWith<$Res>
-    implements $DetailsEventCopyWith<$Res> {
+abstract class _$$GetDetailsCopyWith<$Res> {
   factory _$$GetDetailsCopyWith(
           _$GetDetails value, $Res Function(_$GetDetails) then) =
       __$$GetDetailsCopyWithImpl<$Res>;
-  @override
   $Res call({Pokemon pokemon});
 
-  @override
   $PokemonCopyWith<$Res> get pokemon;
 }
 
@@ -127,19 +103,34 @@ class __$$GetDetailsCopyWithImpl<$Res> extends _$DetailsEventCopyWithImpl<$Res>
               as Pokemon,
     ));
   }
+
+  @override
+  $PokemonCopyWith<$Res> get pokemon {
+    return $PokemonCopyWith<$Res>(_value.pokemon, (value) {
+      return _then(_value.copyWith(pokemon: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$GetDetails implements GetDetails {
+class _$GetDetails with DiagnosticableTreeMixin implements GetDetails {
   const _$GetDetails({required this.pokemon});
 
   @override
   final Pokemon pokemon;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DetailsEvent.start(pokemon: $pokemon)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DetailsEvent.start'))
+      ..add(DiagnosticsProperty('pokemon', pokemon));
   }
 
   @override
@@ -163,6 +154,7 @@ class _$GetDetails implements GetDetails {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Pokemon pokemon) start,
+    required TResult Function() pokemonRefresh,
   }) {
     return start(pokemon);
   }
@@ -171,6 +163,7 @@ class _$GetDetails implements GetDetails {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Pokemon pokemon)? start,
+    TResult Function()? pokemonRefresh,
   }) {
     return start?.call(pokemon);
   }
@@ -179,6 +172,7 @@ class _$GetDetails implements GetDetails {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Pokemon pokemon)? start,
+    TResult Function()? pokemonRefresh,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -191,6 +185,7 @@ class _$GetDetails implements GetDetails {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GetDetails value) start,
+    required TResult Function(Refresh value) pokemonRefresh,
   }) {
     return start(this);
   }
@@ -199,6 +194,7 @@ class _$GetDetails implements GetDetails {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(GetDetails value)? start,
+    TResult Function(Refresh value)? pokemonRefresh,
   }) {
     return start?.call(this);
   }
@@ -207,6 +203,7 @@ class _$GetDetails implements GetDetails {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetDetails value)? start,
+    TResult Function(Refresh value)? pokemonRefresh,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -219,12 +216,118 @@ class _$GetDetails implements GetDetails {
 abstract class GetDetails implements DetailsEvent {
   const factory GetDetails({required final Pokemon pokemon}) = _$GetDetails;
 
-  @override
   Pokemon get pokemon;
-  @override
   @JsonKey(ignore: true)
   _$$GetDetailsCopyWith<_$GetDetails> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RefreshCopyWith<$Res> {
+  factory _$$RefreshCopyWith(_$Refresh value, $Res Function(_$Refresh) then) =
+      __$$RefreshCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RefreshCopyWithImpl<$Res> extends _$DetailsEventCopyWithImpl<$Res>
+    implements _$$RefreshCopyWith<$Res> {
+  __$$RefreshCopyWithImpl(_$Refresh _value, $Res Function(_$Refresh) _then)
+      : super(_value, (v) => _then(v as _$Refresh));
+
+  @override
+  _$Refresh get _value => super._value as _$Refresh;
+}
+
+/// @nodoc
+
+class _$Refresh with DiagnosticableTreeMixin implements Refresh {
+  const _$Refresh();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DetailsEvent.pokemonRefresh()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'DetailsEvent.pokemonRefresh'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Refresh);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Pokemon pokemon) start,
+    required TResult Function() pokemonRefresh,
+  }) {
+    return pokemonRefresh();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Pokemon pokemon)? start,
+    TResult Function()? pokemonRefresh,
+  }) {
+    return pokemonRefresh?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Pokemon pokemon)? start,
+    TResult Function()? pokemonRefresh,
+    required TResult orElse(),
+  }) {
+    if (pokemonRefresh != null) {
+      return pokemonRefresh();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetDetails value) start,
+    required TResult Function(Refresh value) pokemonRefresh,
+  }) {
+    return pokemonRefresh(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(GetDetails value)? start,
+    TResult Function(Refresh value)? pokemonRefresh,
+  }) {
+    return pokemonRefresh?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetDetails value)? start,
+    TResult Function(Refresh value)? pokemonRefresh,
+    required TResult orElse(),
+  }) {
+    if (pokemonRefresh != null) {
+      return pokemonRefresh(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Refresh implements DetailsEvent {
+  const factory Refresh() = _$Refresh;
 }
 
 /// @nodoc
@@ -234,7 +337,9 @@ mixin _$DetailsState {
     required TResult Function() inital,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(PokemonDetails details) loaded,
+    required TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -242,7 +347,9 @@ mixin _$DetailsState {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -250,7 +357,9 @@ mixin _$DetailsState {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -315,12 +424,18 @@ class __$$InitialCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Initial implements Initial {
+class _$Initial with DiagnosticableTreeMixin implements Initial {
   _$Initial();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DetailsState.inital()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'DetailsState.inital'));
   }
 
   @override
@@ -338,7 +453,9 @@ class _$Initial implements Initial {
     required TResult Function() inital,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(PokemonDetails details) loaded,
+    required TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)
+        loaded,
   }) {
     return inital();
   }
@@ -349,7 +466,9 @@ class _$Initial implements Initial {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
   }) {
     return inital?.call();
   }
@@ -360,7 +479,9 @@ class _$Initial implements Initial {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
     required TResult orElse(),
   }) {
     if (inital != null) {
@@ -429,12 +550,18 @@ class __$$LoadingCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Loading implements Loading {
+class _$Loading with DiagnosticableTreeMixin implements Loading {
   _$Loading();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DetailsState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'DetailsState.loading'));
   }
 
   @override
@@ -452,7 +579,9 @@ class _$Loading implements Loading {
     required TResult Function() inital,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(PokemonDetails details) loaded,
+    required TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)
+        loaded,
   }) {
     return loading();
   }
@@ -463,7 +592,9 @@ class _$Loading implements Loading {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
   }) {
     return loading?.call();
   }
@@ -474,7 +605,9 @@ class _$Loading implements Loading {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -543,12 +676,18 @@ class __$$ErrorCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Error implements Error {
+class _$Error with DiagnosticableTreeMixin implements Error {
   _$Error();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DetailsState.error()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'DetailsState.error'));
   }
 
   @override
@@ -566,7 +705,9 @@ class _$Error implements Error {
     required TResult Function() inital,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(PokemonDetails details) loaded,
+    required TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)
+        loaded,
   }) {
     return error();
   }
@@ -577,7 +718,9 @@ class _$Error implements Error {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
   }) {
     return error?.call();
   }
@@ -588,7 +731,9 @@ class _$Error implements Error {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -643,9 +788,10 @@ abstract class Error implements DetailsState {
 abstract class _$$LoadedCopyWith<$Res> {
   factory _$$LoadedCopyWith(_$Loaded value, $Res Function(_$Loaded) then) =
       __$$LoadedCopyWithImpl<$Res>;
-  $Res call({PokemonDetails details});
+  $Res call({PokemonDetails details, Pokemon pokemonData, bool isRefresh});
 
   $PokemonDetailsCopyWith<$Res> get details;
+  $PokemonCopyWith<$Res> get pokemonData;
 }
 
 /// @nodoc
@@ -660,12 +806,22 @@ class __$$LoadedCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? details = freezed,
+    Object? pokemonData = freezed,
+    Object? isRefresh = freezed,
   }) {
     return _then(_$Loaded(
       details: details == freezed
           ? _value.details
           : details // ignore: cast_nullable_to_non_nullable
               as PokemonDetails,
+      pokemonData: pokemonData == freezed
+          ? _value.pokemonData
+          : pokemonData // ignore: cast_nullable_to_non_nullable
+              as Pokemon,
+      isRefresh: isRefresh == freezed
+          ? _value.isRefresh
+          : isRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -675,19 +831,44 @@ class __$$LoadedCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
       return _then(_value.copyWith(details: value));
     });
   }
+
+  @override
+  $PokemonCopyWith<$Res> get pokemonData {
+    return $PokemonCopyWith<$Res>(_value.pokemonData, (value) {
+      return _then(_value.copyWith(pokemonData: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$Loaded implements Loaded {
-  _$Loaded({required this.details});
+class _$Loaded with DiagnosticableTreeMixin implements Loaded {
+  _$Loaded(
+      {required this.details,
+      required this.pokemonData,
+      this.isRefresh = false});
 
   @override
   final PokemonDetails details;
+  @override
+  final Pokemon pokemonData;
+  @override
+  @JsonKey()
+  final bool isRefresh;
 
   @override
-  String toString() {
-    return 'DetailsState.loaded(details: $details)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'DetailsState.loaded(details: $details, pokemonData: $pokemonData, isRefresh: $isRefresh)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DetailsState.loaded'))
+      ..add(DiagnosticsProperty('details', details))
+      ..add(DiagnosticsProperty('pokemonData', pokemonData))
+      ..add(DiagnosticsProperty('isRefresh', isRefresh));
   }
 
   @override
@@ -695,12 +876,18 @@ class _$Loaded implements Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Loaded &&
-            const DeepCollectionEquality().equals(other.details, details));
+            const DeepCollectionEquality().equals(other.details, details) &&
+            const DeepCollectionEquality()
+                .equals(other.pokemonData, pokemonData) &&
+            const DeepCollectionEquality().equals(other.isRefresh, isRefresh));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(details));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(details),
+      const DeepCollectionEquality().hash(pokemonData),
+      const DeepCollectionEquality().hash(isRefresh));
 
   @JsonKey(ignore: true)
   @override
@@ -713,9 +900,11 @@ class _$Loaded implements Loaded {
     required TResult Function() inital,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(PokemonDetails details) loaded,
+    required TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)
+        loaded,
   }) {
-    return loaded(details);
+    return loaded(details, pokemonData, isRefresh);
   }
 
   @override
@@ -724,9 +913,11 @@ class _$Loaded implements Loaded {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
   }) {
-    return loaded?.call(details);
+    return loaded?.call(details, pokemonData, isRefresh);
   }
 
   @override
@@ -735,11 +926,13 @@ class _$Loaded implements Loaded {
     TResult Function()? inital,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(PokemonDetails details)? loaded,
+    TResult Function(
+            PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(details);
+      return loaded(details, pokemonData, isRefresh);
     }
     return orElse();
   }
@@ -783,9 +976,14 @@ class _$Loaded implements Loaded {
 }
 
 abstract class Loaded implements DetailsState {
-  factory Loaded({required final PokemonDetails details}) = _$Loaded;
+  factory Loaded(
+      {required final PokemonDetails details,
+      required final Pokemon pokemonData,
+      final bool isRefresh}) = _$Loaded;
 
   PokemonDetails get details;
+  Pokemon get pokemonData;
+  bool get isRefresh;
   @JsonKey(ignore: true)
   _$$LoadedCopyWith<_$Loaded> get copyWith =>
       throw _privateConstructorUsedError;
