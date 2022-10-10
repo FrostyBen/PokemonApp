@@ -22,14 +22,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<InterfaceRepository>(
-      create: (context) =>
-          RepositoryImpl(remoteDatasource: PokemonDatasource(), localDataSource: LocalDataSource()),
+      create: (context) => RepositoryImpl(
+          remoteDatasource: PokemonDatasource(),
+          localDataSource: LocalDataSource()),
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) => PokemonBloc(
                 pokemonDataSource: context.read<InterfaceRepository>())
-              ..add(GetPokemons()),
+              ..add(const GetPokemons()),
           ),
           BlocProvider(
             create: (context) => DetailsBloc(
@@ -39,12 +40,12 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'PokemonsApp',
           theme: ThemeData(
-            textTheme: TextTheme(
+            textTheme: const TextTheme(
               headline6: TextStyle(fontSize: 19),
             ),
             primarySwatch: Colors.blue,
           ),
-          home: HomePage(),
+          home: const HomePage(),
         ),
       ),
     );

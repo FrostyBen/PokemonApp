@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:pokemon_app/domain/entities/pokemon_details/pokemon_details.dart';
-import 'package:pokemon_app/domain/interface_repository/intarface_repository.dart';
 
 import '../../domain/entities/pokemons/result.dart';
 

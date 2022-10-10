@@ -17,17 +17,18 @@ class RepositoryImpl extends InterfaceRepository {
     final prefs = await SharedPreferences.getInstance();
 
     if (reload == false) {
-      if (prefs.containsKey('pokemons')) {
-        return localDataSource.getPokemons();
+      if (prefs.containsKey(page.toString())) {
+        return localDataSource.getPokemons(page);
       } else {
         final List<Pokemon> dataFromInternet =
             await remoteDatasource.getPokemons(page);
-        localDataSource.savePokemons(dataFromInternet);
+        localDataSource.savePokemons(dataFromInternet, page);
         return remoteDatasource.getPokemons(page);
       }
     } else {
+      await localDataSource.clear();
       final datafrominternet = await remoteDatasource.getPokemons(page);
-      localDataSource.savePokemons(datafrominternet);
+      localDataSource.savePokemons(datafrominternet, page);
       return datafrominternet;
     }
   }

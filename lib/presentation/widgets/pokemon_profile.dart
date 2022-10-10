@@ -1,12 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_app/domain/entities/pokemon_details/pokemon_details.dart';
-import 'package:pokemon_app/main.dart';
-import '../bloc/details_bloc/details_bloc.dart';
 
 class PokemonProfile extends StatelessWidget {
   const PokemonProfile({Key? key, required this.details}) : super(key: key);
@@ -53,7 +47,7 @@ class PokemonProfile extends StatelessWidget {
                   'height :$divideHeight m  ',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Text(

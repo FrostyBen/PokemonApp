@@ -1,12 +1,5 @@
-import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokemon_app/domain/entities/pokemon_details/pokemon_details.dart';
-import 'package:pokemon_app/main.dart';
 import 'package:pokemon_app/presentation/widgets/pokemons_list.dart';
 
 import '../../domain/entities/pokemons/result.dart';
@@ -14,7 +7,7 @@ import '../bloc/pokemons_bloc/pokemon_bloc.dart';
 import '../widgets/bottom_loader.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,18 +16,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _scrollController = ScrollController();
   void _onScroll() {
-    if (_isBottom) context.read<PokemonBloc>().add(PokemonEvent.loadMore());
+    if (_isBottom) {
+      context.read<PokemonBloc>().add(const PokemonEvent.loadMore());
+    }
   }
 
   bool get _isBottom {
     if (!_scrollController.hasClients) return false;
     final maxControll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxControll * 0.9);
+
+    return currentScroll >= (maxControll - 100);
   }
 
-   _refresh() async {
-    return BlocProvider.of<PokemonBloc>(context)..add(Refresh());
+  void _refresh() {
+    BlocProvider.of<PokemonBloc>(context).add(const Refresh());
   }
 
   @override
@@ -47,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text('Pokemons'),
         ),
       ),
@@ -58,17 +54,19 @@ class _HomePageState extends State<HomePage> {
               return Container();
             },
             loading: () {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             },
-            error: () {
-              return Container();
+            error: (String error) {
+              return const Center(
+                child: Text('something went wrong'),
+              );
             },
             loaded: (List<Pokemon> pokemons, bool isLoading, bool isRefresh) {
               return RefreshIndicator(
                 onRefresh: () async {
                   final bloc = context.read<PokemonBloc>().stream.first;
                   _refresh();
-                  await bloc;
+                  (await bloc);
                 },
                 child: CustomScrollView(
                   controller: _scrollController,
@@ -77,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
                           return index >= pokemons.length
-                              ? BottomLoader()
+                              ? const BottomLoader()
                               : PokemonsList(pokemon: pokemons[index]);
                         },
                         childCount:

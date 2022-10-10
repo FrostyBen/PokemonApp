@@ -336,7 +336,7 @@ mixin _$DetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(String error) error,
     required TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)
         loaded,
@@ -346,7 +346,7 @@ mixin _$DetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
@@ -356,7 +356,7 @@ mixin _$DetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
@@ -452,7 +452,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(String error) error,
     required TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)
         loaded,
@@ -465,7 +465,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
@@ -478,7 +478,7 @@ class _$Initial with DiagnosticableTreeMixin implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
@@ -578,7 +578,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(String error) error,
     required TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)
         loaded,
@@ -591,7 +591,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
@@ -604,7 +604,7 @@ class _$Loading with DiagnosticableTreeMixin implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
@@ -662,6 +662,7 @@ abstract class Loading implements DetailsState {
 abstract class _$$ErrorCopyWith<$Res> {
   factory _$$ErrorCopyWith(_$Error value, $Res Function(_$Error) then) =
       __$$ErrorCopyWithImpl<$Res>;
+  $Res call({String error});
 }
 
 /// @nodoc
@@ -672,44 +673,69 @@ class __$$ErrorCopyWithImpl<$Res> extends _$DetailsStateCopyWithImpl<$Res>
 
   @override
   _$Error get _value => super._value as _$Error;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(_$Error(
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$Error with DiagnosticableTreeMixin implements Error {
-  _$Error();
+  _$Error({required this.error});
+
+  @override
+  final String error;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DetailsState.error()';
+    return 'DetailsState.error(error: $error)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'DetailsState.error'));
+    properties
+      ..add(DiagnosticsProperty('type', 'DetailsState.error'))
+      ..add(DiagnosticsProperty('error', error));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Error);
+        (other.runtimeType == runtimeType &&
+            other is _$Error &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$ErrorCopyWith<_$Error> get copyWith =>
+      __$$ErrorCopyWithImpl<_$Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(String error) error,
     required TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)
         loaded,
   }) {
-    return error();
+    return error(this.error);
   }
 
   @override
@@ -717,12 +743,12 @@ class _$Error with DiagnosticableTreeMixin implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
   }) {
-    return error?.call();
+    return error?.call(this.error);
   }
 
   @override
@@ -730,14 +756,14 @@ class _$Error with DiagnosticableTreeMixin implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(this.error);
     }
     return orElse();
   }
@@ -781,7 +807,11 @@ class _$Error with DiagnosticableTreeMixin implements Error {
 }
 
 abstract class Error implements DetailsState {
-  factory Error() = _$Error;
+  factory Error({required final String error}) = _$Error;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$ErrorCopyWith<_$Error> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -899,7 +929,7 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() inital,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(String error) error,
     required TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)
         loaded,
@@ -912,7 +942,7 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,
@@ -925,7 +955,7 @@ class _$Loaded with DiagnosticableTreeMixin implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? inital,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     TResult Function(
             PokemonDetails details, Pokemon pokemonData, bool isRefresh)?
         loaded,

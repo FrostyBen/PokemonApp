@@ -6,12 +6,11 @@ class PokemonState with _$PokemonState {
 
   factory PokemonState.loading() = Loading;
 
-  factory PokemonState.error() = Error;
+  factory PokemonState.error({required String error}) = Error;
 
   factory PokemonState.loaded({
     required List<Pokemon> pokemons,
     @Default(false) bool isLoading,
-    required bool isRefresher,
+    required bool isRefreshing,
   }) = Loaded;
- 
 }
