@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokemon_app/domain/entities/pokemon_details/pokemon_details.dart';
 
 class PokemonProfile extends StatelessWidget {
-  const PokemonProfile({Key? key, required this.details}) : super(key: key);
+  const PokemonProfile({super.key, required this.details});
   final PokemonDetails? details;
   double? get divideWight {
     if (details?.weight != null) {

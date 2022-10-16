@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_app/data/local_datasource/local_datasource.dart';
-
-import 'package:pokemon_app/data/repositories/repository_impl.dart';
-import 'package:pokemon_app/domain/interface_repository/intarface_repository.dart';
-import 'package:pokemon_app/presentation/bloc/details_bloc/details_bloc.dart';
-import 'DI/service_locator.dart';
-import 'data/remote_datasource/pokemon_datasource.dart';
-import 'presentation/bloc/pokemons_bloc/pokemon_bloc.dart';
-import 'presentation/screens/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:pokemon_app/core/DI/service_locator.dart';
+import 'package:pokemon_app/domain/use_cases/get_details.dart';
+import 'package:pokemon_app/domain/use_cases/get_pokemons.dart';
+import 'package:pokemon_app/presentation/bloc/details_bloc/details_bloc.dart';
+import 'package:pokemon_app/presentation/bloc/pokemons_bloc/pokemon_bloc.dart';
+import 'package:pokemon_app/presentation/screens/home_page.dart';
+
 
 void main() {
   setupLocator();
@@ -16,37 +15,29 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<InterfaceRepository>(
-      create: (context) => RepositoryImpl(
-          remoteDatasource: PokemonDatasource(),
-          localDataSource: LocalDataSource()),
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => PokemonBloc(
-                pokemonDataSource: context.read<InterfaceRepository>())
-              ..add(const GetPokemons()),
-          ),
-          BlocProvider(
-            create: (context) => DetailsBloc(
-                pokemonDatasource: context.read<InterfaceRepository>()),
-          ),
-        ],
-        child: MaterialApp(
-          title: 'PokemonsApp',
-          theme: ThemeData(
-            textTheme: const TextTheme(
-              headline6: TextStyle(fontSize: 19),
-            ),
-            primarySwatch: Colors.blue,
-          ),
-          home: const HomePage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => PokemonBloc(GetIt.I.get<GetPokemonsUseCase>())
+            ..add(const GetPokemons()),
         ),
+        BlocProvider(
+          create: (context) => DetailsBloc(GetIt.I.get<GetDetailsUseCase>()),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'PokemonsApp',
+        theme: ThemeData(
+          textTheme: const TextTheme(
+            headline6: TextStyle(fontSize: 19),
+          ),
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomePage(),
       ),
     );
   }

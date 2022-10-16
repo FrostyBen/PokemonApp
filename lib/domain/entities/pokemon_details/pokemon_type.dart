@@ -1,5 +1,5 @@
-import 'species.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pokemon_app/domain/entities/pokemon_details/species.dart';
 
 part 'pokemon_type.freezed.dart';
 part 'pokemon_type.g.dart';

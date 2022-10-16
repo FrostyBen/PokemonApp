@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokemon_app/domain/entities/pokemons/result.dart';
+import 'package:pokemon_app/presentation/bloc/pokemons_bloc/pokemon_bloc.dart';
+import 'package:pokemon_app/presentation/widgets/bottom_loader.dart';
 import 'package:pokemon_app/presentation/widgets/pokemons_list.dart';
 
-import '../../domain/entities/pokemons/result.dart';
-import '../bloc/pokemons_bloc/pokemon_bloc.dart';
-import '../widgets/bottom_loader.dart';
-
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -66,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                 onRefresh: () async {
                   final bloc = context.read<PokemonBloc>().stream.first;
                   _refresh();
-                  (await bloc);
+                  await bloc;
                 },
                 child: CustomScrollView(
                   controller: _scrollController,

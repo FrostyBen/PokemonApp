@@ -5,8 +5,9 @@ class DetailsState with _$DetailsState {
   factory DetailsState.inital() = Initial;
   factory DetailsState.loading() = Loading;
   factory DetailsState.error({required String error}) = Error;
-  factory DetailsState.loaded(
-      {required PokemonDetails details,
-      required Pokemon pokemonData,
-      @Default(false) bool isRefresh}) = Loaded;
+  factory DetailsState.loaded({
+    required PokemonDetails details,
+    required Pokemon pokemonData,
+    @Default(false) bool isRefresh,
+  }) = Loaded;
 }

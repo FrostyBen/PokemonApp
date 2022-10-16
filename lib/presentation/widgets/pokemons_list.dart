@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_app/domain/entities/pokemons/result.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokemon_app/domain/entities/pokemons/result.dart';
 import 'package:pokemon_app/presentation/bloc/details_bloc/details_bloc.dart';
 import 'package:pokemon_app/presentation/screens/pokemon_details_page.dart';
 
 class PokemonsList extends StatelessWidget {
   const PokemonsList({
-    Key? key,
+    super.key,
     required this.pokemon,
-  }) : super(key: key);
+  });
   final Pokemon pokemon;
 
   @override
@@ -39,7 +39,9 @@ class PokemonsList extends StatelessWidget {
                   child: Text(
                     pokemon.name,
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
